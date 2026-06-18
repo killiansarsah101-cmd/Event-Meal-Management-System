@@ -479,6 +479,18 @@ export async function processSyncQueue(): Promise<{
 
     stats.success = true
     console.log('[v0] Sync queue processing complete:', stats)
+
+    // Emit sync complete message for UI components to listen to
+    if (typeof window !== 'undefined') {
+      window.postMessage(
+        {
+          type: 'SYNC_COMPLETE',
+          stats,
+        },
+        '*',
+      )
+    }
+
     return stats
   } catch (error) {
     console.error('[v0] processSyncQueue error:', error)

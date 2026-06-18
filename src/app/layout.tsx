@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ServiceWorkerRegistration from "@/components/service-worker-registration";
+import OfflineIndicator from "@/components/OfflineIndicator";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,6 +44,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#1f2937" />
       </head>
       <body className={inter.className}>
+        <OfflineIndicator />
         {children}
         <ServiceWorkerRegistration />
       </body>
